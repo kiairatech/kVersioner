@@ -1,55 +1,51 @@
-package org.redrune.utility;
+package org.redrune.utility
 
-import org.apache.commons.codec.binary.Hex;
+import kotlin.Throws
+import java.io.IOException
+import java.io.BufferedReader
+import java.security.NoSuchAlgorithmException
+import java.security.MessageDigest
+import org.apache.commons.codec.binary.Hex
+import java.io.InputStream
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
+import java.util.ArrayList
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.List;
-
-public class WebpageUtils {
-
-    public static List<String> getText(String page) throws IOException {
-        List<String> text = new ArrayList<>();
-        URL url = new URL(page);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-        connection.setRequestMethod("GET");
-        connection.setRequestProperty("User-Agent", "Mozilla Firefox");
-        connection.setDoOutput(true);
-        connection.setDoInput(true);
-
-        InputStream input;
-        if (connection.getResponseCode() >= 400) {
-            input = connection.getErrorStream();
+object WebpageUtils {
+    @Throws(IOException::class)
+    fun getText(page: String?): List<String> {
+        val text: MutableList<String> = ArrayList()
+        val url = URL(page)
+        val connection = url.openConnection() as HttpURLConnection
+        connection.requestMethod = "GET"
+        connection.setRequestProperty("User-Agent", "Mozilla Firefox")
+        connection.doOutput = true
+        connection.doInput = true
+        val input: InputStream
+        input = if (connection.responseCode >= 400) {
+            connection.errorStream
         } else {
-            input = connection.getInputStream();
+            connection.inputStream
         }
-        BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-        String line;
-        while ((line = reader.readLine()) != null) {
-            text.add(line);
+        val reader = BufferedReader(InputStreamReader(input))
+        var line: String
+        while (reader.readLine().also { line = it } != null) {
+            text.add(line)
         }
-        reader.close();
-        return text;
+        reader.close()
+        return text
     }
 
-    public static String getDigest(InputStream is, MessageDigest md, int byteArraySize)
-            throws NoSuchAlgorithmException, IOException {
-        md.reset();
-        byte[] bytes = new byte[byteArraySize];
-        int numBytes;
-        while ((numBytes = is.read(bytes)) != -1) {
-            md.update(bytes, 0, numBytes);
+    @Throws(NoSuchAlgorithmException::class, IOException::class)
+    fun getDigest(`is`: InputStream, md: MessageDigest, byteArraySize: Int): String {
+        md.reset()
+        val bytes = ByteArray(byteArraySize)
+        var numBytes: Int
+        while (`is`.read(bytes).also { numBytes = it } != -1) {
+            md.update(bytes, 0, numBytes)
         }
-        byte[] digest = md.digest();
-        return new String(Hex.encodeHex(digest));
+        val digest = md.digest()
+        return String(Hex.encodeHex(digest))
     }
-
 }

@@ -5,6 +5,10 @@ plugins {
 
 val junitVersion = "5.6.2"
 
+application {
+    mainClassName = "org.redrune.Launcher"
+}
+
 allprojects {
     apply(plugin = "kotlin")
     apply(plugin = "idea")

@@ -1,18 +1,18 @@
-package org.redrune.utility;
+package org.redrune.utility
 
-import java.io.File;
+import java.io.File
 
 /**
- * @author Tyluur <itstyluur@gmail.com>
+ * @author Tyluur <itstyluur></itstyluur>@gmail.com>
  * @since 3/1/2016
  */
-public class DirectoryManager {
+object DirectoryManager {
+    @JvmStatic
+	fun mkdirs() {
+        getFile(Constants.GAMEPACK_LOCATION).parentFile.mkdirs()
+    }
 
-	public static void mkdirs() {
-		getFile(Constants.GAMEPACK_LOCATION).getParentFile().mkdirs();
-	}
-
-	public static File getFile(String loc) {
-		return new File(loc);
-	}
+    fun getFile(loc: String?): File {
+        return File(loc)
+    }
 }

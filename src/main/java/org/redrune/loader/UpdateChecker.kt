@@ -1,88 +1,94 @@
-package org.redrune.loader;
+package org.redrune.loader
 
-import org.redrune.utility.Constants;
-import org.redrune.utility.DirectoryManager;
-import org.redrune.utility.WebpageUtils;
+import kotlin.Throws
+import java.io.IOException
+import java.security.NoSuchAlgorithmException
+import java.security.MessageDigest
+import org.redrune.utility.WebpageUtils
+import java.io.File
+import java.io.FileInputStream
+import org.redrune.loader.UpdateChecker
+import org.redrune.utility.Constants
+import org.redrune.utility.DirectoryManager
+import java.io.InputStream
+import java.lang.Exception
+import java.net.URL
+import kotlin.experimental.and
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+class UpdateChecker {
+    private var updateRequired = false
+    val fileHash: String
+        get() {
+            try {
+                if (DirectoryManager.getFile(Constants.GAMEPACK_LOCATION).exists()) {
+                    val b = createChecksum(DirectoryManager.getFile(Constants.GAMEPACK_LOCATION))
+                    var result = ""
+                    var arrayOfByte1: ByteArray
+                    val j = b.also { arrayOfByte1 = it }.size
+                    for (i in 0 until j) {
+                        val aB = arrayOfByte1[i]
+                        result = result + Integer.toString((aB and 0xFF.toByte()).toInt() + 256, 16).substring(1)
+                    }
+                    return result
+                }
+                return ""
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+            return ""
+        }
 
-import static org.redrune.utility.WebpageUtils.getDigest;
+    //		return WebpageUtils.getText(Constants.WEBSITE_MD5_URL).get(0);
+    @get:Throws(IOException::class, NoSuchAlgorithmException::class)
+    val uRLHash: String
+        get() {
+            val url = URL(Constants.CLIENT_URL)
+            val `is` = url.openStream()
+            val md = MessageDigest.getInstance("MD5")
+            val digest = WebpageUtils.getDigest(`is`, md, 2048)
+            println("MD5 Digest:$digest")
+            //		return WebpageUtils.getText(Constants.WEBSITE_MD5_URL).get(0);
+            return digest
+        }
 
-public class UpdateChecker {
+    @Throws(Exception::class)
+    private fun createChecksum(file: File): ByteArray {
+        val fis: InputStream = FileInputStream(file)
+        val buffer = ByteArray('?'.toInt())
+        val complete = MessageDigest.getInstance("MD5")
+        var numRead: Int
+        do {
+            numRead = fis.read(buffer)
+            if (numRead > 0) {
+                complete.update(buffer, 0, numRead)
+            }
+        } while (numRead != -1)
+        fis.close()
+        return complete.digest()
+    }
 
-	private static final UpdateChecker INSTANCE = new UpdateChecker();
+    fun updateRequired(): Boolean {
+        return updateRequired
+    }
 
-	private boolean updateRequired = false;
+    companion object {
+        private val INSTANCE = UpdateChecker()
+        fun get(): UpdateChecker {
+            return INSTANCE
+        }
+    }
 
-	public UpdateChecker() {
-		String fileHash = getFileHash();
-		String urlHash = null;
-		try {
-			urlHash = getURLHash();
-		} catch (IOException | NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-		updateRequired = !fileHash.equals(urlHash);
-		System.out.println("fileHash=" + fileHash + ", urlHash=" + urlHash);
-	}
-
-	public String getFileHash() {
-		try {
-			if (DirectoryManager.getFile(Constants.GAMEPACK_LOCATION).exists()) {
-				byte[] b = createChecksum(DirectoryManager.getFile(Constants.GAMEPACK_LOCATION));
-				String result = "";
-				byte[] arrayOfByte1;
-				int j = (arrayOfByte1 = b).length;
-				for (int i = 0; i < j; i++) {
-					byte aB = arrayOfByte1[i];
-					result = result + Integer.toString((aB & 0xFF) + 256, 16).substring(1);
-				}
-				return result;
-			}
-			return "";
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "";
-	}
-
-	public String getURLHash() throws IOException, NoSuchAlgorithmException {
-		URL url = new URL(Constants.CLIENT_URL);
-		InputStream is = url.openStream();
-		MessageDigest md = MessageDigest.getInstance("MD5");
-		String digest = getDigest(is, md, 2048);
-
-		System.out.println("MD5 Digest:" + digest);
-//		return WebpageUtils.getText(Constants.WEBSITE_MD5_URL).get(0);
-		return digest;
-	}
-
-	private byte[] createChecksum(File file) throws Exception {
-		InputStream fis = new FileInputStream(file);
-		byte[] buffer = new byte['?'];
-		MessageDigest complete = MessageDigest.getInstance("MD5");
-		int numRead;
-		do {
-			numRead = fis.read(buffer);
-			if (numRead > 0) {
-				complete.update(buffer, 0, numRead);
-			}
-		} while (numRead != -1);
-		fis.close();
-		return complete.digest();
-	}
-
-	public static UpdateChecker get() {
-		return INSTANCE;
-	}
-
-	public boolean updateRequired() {
-		return updateRequired;
-	}
+    init {
+        val fileHash = fileHash
+        var urlHash: String? = null
+        try {
+            urlHash = uRLHash
+        } catch (e: IOException) {
+            e.printStackTrace()
+        } catch (e: NoSuchAlgorithmException) {
+            e.printStackTrace()
+        }
+        updateRequired = fileHash != urlHash
+        println("fileHash=$fileHash, urlHash=$urlHash")
+    }
 }

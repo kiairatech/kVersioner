@@ -17,7 +17,7 @@ allprojects {
     group = "redrune667"
     version = "0.0.1"
 
-    java.sourceCompatibility = JavaVersion.VERSION_15
+    java.sourceCompatibility = JavaVersion.VERSION_1_8
 
     repositories {
         mavenCentral()

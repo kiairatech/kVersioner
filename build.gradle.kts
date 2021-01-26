@@ -24,33 +24,35 @@ allprojects {
     }
 }
 
-subprojects {
-    dependencies {
-        // Jvm
-        implementation(kotlin("stdlib"))
+dependencies {
+    // Jvm
+    implementation(kotlin("stdlib"))
 
-        // Kotlin
-        implementation(kotlin("reflect"))
-        implementation(group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version = "1.4.2")
+    // Kotlin
+    implementation(kotlin("reflect"))
+    implementation(group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version = "1.4.2")
 
-        // Network
-        implementation("io.netty:netty-all:4.1.44.Final")
+    // Network
+    implementation("io.netty:netty-all:4.1.44.Final")
 
-        // Logging
-        implementation("org.slf4j:slf4j-api:1.7.30")
-        implementation("ch.qos.logback:logback-classic:1.2.3")
+    // Logging
+    implementation("org.slf4j:slf4j-api:1.7.30")
+    implementation("ch.qos.logback:logback-classic:1.2.3")
 
-        // Testing
-        testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
+    //Utilities
+    implementation("commons-codec:commons-codec:1.9")
+    //* // https://mvnrepository.com/artifact/commons-codec/commons-codec
+    //compile group: 'commons-codec', name: 'commons-codec', version: '1.9'*/
+
+    // Testing
+    testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
+}
+
+tasks {
+    compileKotlin {
+        kotlinOptions.jvmTarget = "1.8"
     }
-
-    tasks {
-        compileKotlin {
-            kotlinOptions.jvmTarget = "1.8"
-        }
-        compileTestKotlin {
-            kotlinOptions.jvmTarget = "1.8"
-        }
+    compileTestKotlin {
+        kotlinOptions.jvmTarget = "1.8"
     }
-
 }

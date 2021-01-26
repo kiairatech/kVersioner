@@ -9,9 +9,9 @@ import java.io.File;
 public class Constants {
 
 	/**
-	 * The name of the org.redrune.loader's server
+	 * The name of the loader's server
 	 */
-	public static final String LOADER_NAME = "Lotica";
+	public static final String LOADER_NAME = "Dusk";
 
 	/**
 	 * The system separator
@@ -19,9 +19,9 @@ public class Constants {
 	private static final String SEPARATOR = File.separator;
 
 	/**
-	 * The directory all client org.redrune.loader resources will be saved in
+	 * The directory all client loader resources will be saved in
 	 */
-	public static final String RESOURCE_DIRECTORY = System.getProperty("user.home") + SEPARATOR + "LoticaLoader";
+	public static final String RESOURCE_DIRECTORY = System.getProperty("user.home") + SEPARATOR + LOADER_NAME + "Loader";
 
 	/**
 	 * The location of the gamepack when downloaded
@@ -31,11 +31,6 @@ public class Constants {
 	/**
 	 * The url to download the client from
 	 */
-	public static final String CLIENT_URL = "http://lotica.soulplayps.com/services/client/client.jar";
-
-	/**
-	 * The url to check for the online md5 client hash
-	 */
-	public static final String WEBSITE_MD5_URL = "http://lotica.soulplayps.com/services/client/clientmd5.php";
+	public static final String CLIENT_URL = "https://dusk.rs/client/dusk-1.0.1.jar";
 
 }

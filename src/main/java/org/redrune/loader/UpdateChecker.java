@@ -8,7 +8,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+import static org.redrune.utility.WebpageUtils.getDigest;
 
 public class UpdateChecker {
 
@@ -21,7 +25,7 @@ public class UpdateChecker {
 		String urlHash = null;
 		try {
 			urlHash = getURLHash();
-		} catch (IOException e) {
+		} catch (IOException | NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
 		updateRequired = !fileHash.equals(urlHash);
@@ -48,8 +52,15 @@ public class UpdateChecker {
 		return "";
 	}
 
-	public String getURLHash() throws IOException {
-		return WebpageUtils.getText(Constants.WEBSITE_MD5_URL).get(0);
+	public String getURLHash() throws IOException, NoSuchAlgorithmException {
+		URL url = new URL(Constants.CLIENT_URL);
+		InputStream is = url.openStream();
+		MessageDigest md = MessageDigest.getInstance("MD5");
+		String digest = getDigest(is, md, 2048);
+
+		System.out.println("MD5 Digest:" + digest);
+//		return WebpageUtils.getText(Constants.WEBSITE_MD5_URL).get(0);
+		return digest;
 	}
 
 	private byte[] createChecksum(File file) throws Exception {

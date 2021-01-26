@@ -1,20 +1,21 @@
 package org.redrune.loader
 
-import kotlin.Throws
-import java.io.IOException
-import java.security.NoSuchAlgorithmException
-import java.security.MessageDigest
+import org.redrune.utility.Constants
+import org.redrune.utility.DirectoryManager
 import org.redrune.utility.WebpageUtils
 import java.io.File
 import java.io.FileInputStream
-import org.redrune.loader.UpdateChecker
-import org.redrune.utility.Constants
-import org.redrune.utility.DirectoryManager
+import java.io.IOException
 import java.io.InputStream
-import java.lang.Exception
 import java.net.URL
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 import kotlin.experimental.and
 
+/*
+ * @author Tyluur<itstyluur@icloud.com>
+ * @since 3/1/2016
+ */
 class UpdateChecker {
     private var updateRequired = false
     val fileHash: String

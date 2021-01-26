@@ -1,18 +1,22 @@
 package org.redrune.utility
 
-import kotlin.Throws
-import java.io.IOException
-import java.io.BufferedReader
-import java.security.NoSuchAlgorithmException
-import java.security.MessageDigest
 import org.apache.commons.codec.binary.Hex
+import java.io.BufferedReader
+import java.io.IOException
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
-import java.util.ArrayList
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
+import java.util.*
 
+/*
+ * @author Tyluur<itstyluur@icloud.com>
+ * @since 3/1/2016
+ */
 object WebpageUtils {
+
     @Throws(IOException::class)
     fun getText(page: String?): List<String> {
         val text: MutableList<String> = ArrayList()

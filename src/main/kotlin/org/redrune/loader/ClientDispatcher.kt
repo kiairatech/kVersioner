@@ -1,14 +1,17 @@
 package org.redrune.loader
 
 import org.redrune.utility.Constants
-import java.io.File
 import java.awt.Desktop
+import java.io.File
 import java.io.IOException
-import java.lang.Exception
 
+/*
+ * @author Tyluur<itstyluur@icloud.com>
+ * @since 3/1/2016
+ */
 object ClientDispatcher {
     @JvmStatic
-	fun open() {
+    fun open() {
         try {
             val jar = File(Constants.GAMEPACK_LOCATION)
             val directory = jar.absolutePath

@@ -11,8 +11,8 @@ import java.net.URL
 import java.util.concurrent.Executors
 import javax.swing.JProgressBar
 
-/**
- * @author Tyluur <itstyluur></itstyluur>@gmail.com>
+/*
+ * @author Tyluur<itstyluur@icloud.com>
  * @since 3/1/2016
  */
 class ClientDownloader(private val progressBar: JProgressBar) : Runnable {
@@ -79,7 +79,7 @@ class ClientDownloader(private val progressBar: JProgressBar) : Runnable {
                 "User-Agent",
                 "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)"
             )
-            progressBar.maximum = conn!!.contentLength
+            progressBar.maximum = conn.contentLength
         } catch (e: IOException) {
             e.printStackTrace()
         } finally {

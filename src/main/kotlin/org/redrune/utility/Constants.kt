@@ -3,7 +3,7 @@ package org.redrune.utility
 import java.io.File
 
 /**
- * @author Tyluur <itstyluur></itstyluur>@gmail.com>
+ * @author Tyluur<itstyluur@icloud.com>
  * @since 3/1/2016
  */
 object Constants {

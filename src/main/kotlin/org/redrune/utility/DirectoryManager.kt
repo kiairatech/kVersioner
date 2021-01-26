@@ -3,7 +3,7 @@ package org.redrune.utility
 import java.io.File
 
 /**
- * @author Tyluur <itstyluur></itstyluur>@gmail.com>
+ * @author Tyluur<itstyluur@icloud.com>
  * @since 3/1/2016
  */
 object DirectoryManager {
@@ -12,7 +12,7 @@ object DirectoryManager {
         getFile(Constants.GAMEPACK_LOCATION).parentFile.mkdirs()
     }
 
-    fun getFile(loc: String?): File {
+    fun getFile(loc: String): File {
         return File(loc)
     }
 }

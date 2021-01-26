@@ -10,7 +10,8 @@ import java.awt.Font
 import javax.swing.*
 
 /**
- * @author EliteBook
+ * @author Tyluur<itstyluur@icloud.com>
+ * @since 3/1/2016
  */
 object Launcher : JFrame() {
 

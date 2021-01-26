@@ -17,21 +17,30 @@ import java.util.*
  */
 object WebpageUtils {
 
-    @Throws(IOException::class)
-    fun getText(page: String?): List<String> {
-        val text: MutableList<String> = ArrayList()
-        val url = URL(page)
+    fun getStream(path: String): InputStream {
+        val url = URL(path)
         val connection = url.openConnection() as HttpURLConnection
         connection.requestMethod = "GET"
         connection.setRequestProperty("User-Agent", "Mozilla Firefox")
         connection.doOutput = true
         connection.doInput = true
-        val input: InputStream
-        input = if (connection.responseCode >= 400) {
-            connection.errorStream
-        } else {
-            connection.inputStream
+        try {
+            return if (connection.responseCode >= 400) {
+                connection.errorStream
+            } else {
+                connection.inputStream
+            }
+        } catch (e: Exception) {
+            throw IllegalStateException(e)
         }
+
+    }
+
+
+    @Throws(IOException::class)
+    fun getText(page: String?): List<String> {
+        val text: MutableList<String> = ArrayList()
+        val input = page?.let { getStream(it) }
         val reader = BufferedReader(InputStreamReader(input))
         var line: String
         while (reader.readLine().also { line = it } != null) {

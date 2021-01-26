@@ -97,7 +97,9 @@ object Launcher : JFrame() {
     @JvmStatic
     fun main(args: Array<String>) {
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName())
-        EventQueue.invokeLater { Launcher.isVisible = true }
+        EventQueue.invokeLater {
+            Launcher.isVisible = true
+        }
     }
 
     /**

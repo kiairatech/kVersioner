@@ -7,7 +7,6 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.IOException
 import java.io.InputStream
-import java.net.URL
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import kotlin.experimental.and
@@ -43,12 +42,9 @@ class UpdateChecker {
     @get:Throws(IOException::class, NoSuchAlgorithmException::class)
     val uRLHash: String
         get() {
-            val url = URL(Constants.CLIENT_URL)
-            val `is` = url.openStream()
+            val inputStream = WebpageUtils.getStream(Constants.CLIENT_URL)
             val md = MessageDigest.getInstance("MD5")
-            val digest = WebpageUtils.getDigest(`is`, md, 2048)
-            println("MD5 Digest:$digest")
-            //		return WebpageUtils.getText(Constants.WEBSITE_MD5_URL).get(0);
+            val digest = WebpageUtils.getDigest(inputStream, md, 2048)
             return digest
         }
 

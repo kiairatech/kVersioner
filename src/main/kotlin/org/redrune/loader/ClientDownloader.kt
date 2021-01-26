@@ -3,6 +3,7 @@ package org.redrune.loader
 import org.redrune.Launcher
 import org.redrune.utility.Constants
 import org.redrune.utility.DirectoryManager
+import org.redrune.utility.WebpageUtils
 import java.io.BufferedInputStream
 import java.io.FileOutputStream
 import java.io.IOException
@@ -37,13 +38,9 @@ class ClientDownloader(private val progressBar: JProgressBar) : Runnable {
         try {
             var count: Int
             val url = URL(Constants.CLIENT_URL)
-            val connection = url.openConnection() as HttpURLConnection
             setBarSize(url)
-            connection.requestMethod = "GET"
-            connection.setRequestProperty("User-Agent", "Mozilla Firefox")
-            connection.doOutput = true
-            connection.doInput = true
-            `in` = BufferedInputStream(connection.inputStream)
+            val inputStream = WebpageUtils.getStream(Constants.CLIENT_URL)
+            `in` = BufferedInputStream(inputStream)
             out = FileOutputStream(Constants.GAMEPACK_LOCATION)
             val data = ByteArray(1024)
             val file = DirectoryManager.getFile(Constants.GAMEPACK_LOCATION)

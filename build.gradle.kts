@@ -4,7 +4,7 @@ plugins {
 }
 
 application {
-    mainClassName = "org.redrune.Launcher"
+    mainClassName = "com.tyluur.Launcher"
 }
 
 repositories {

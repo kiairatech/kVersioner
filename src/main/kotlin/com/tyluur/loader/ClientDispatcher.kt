@@ -1,6 +1,6 @@
-package org.redrune.loader
+package com.tyluur.loader
 
-import org.redrune.utility.Constants
+import com.tyluur.utility.Constants
 import java.awt.Desktop
 import java.io.File
 import java.io.IOException
@@ -10,6 +10,7 @@ import java.io.IOException
  * @since 3/1/2016
  */
 object ClientDispatcher {
+
     @JvmStatic
     fun open() {
         try {

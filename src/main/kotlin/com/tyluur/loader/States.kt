@@ -1,4 +1,4 @@
-package org.redrune.loader
+package com.tyluur.loader
 
 /*
  * @author Tyluur<itstyluur@icloud.com>

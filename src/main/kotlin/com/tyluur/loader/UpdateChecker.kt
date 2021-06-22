@@ -1,8 +1,8 @@
-package org.redrune.loader
+package com.tyluur.loader
 
-import org.redrune.utility.Constants
-import org.redrune.utility.DirectoryManager
-import org.redrune.utility.WebpageUtils
+import com.tyluur.utility.Constants
+import com.tyluur.utility.DirectoryManager
+import com.tyluur.utility.WebpageUtils
 import java.io.File
 import java.io.FileInputStream
 import java.io.IOException

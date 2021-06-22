@@ -1,10 +1,10 @@
-package org.redrune
+package com.tyluur
 
-import org.redrune.loader.ClientDispatcher.open
-import org.redrune.loader.ClientDownloader.Companion.initializeDownload
-import org.redrune.loader.States
-import org.redrune.utility.Constants
-import org.redrune.utility.DirectoryManager.mkdirs
+import com.tyluur.loader.ClientDispatcher.open
+import com.tyluur.loader.ClientDownloader.Companion.initializeDownload
+import com.tyluur.loader.States
+import com.tyluur.utility.Constants
+import com.tyluur.utility.DirectoryManager.mkdirs
 import java.awt.EventQueue
 import java.awt.Font
 import javax.swing.*

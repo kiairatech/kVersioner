@@ -1,4 +1,4 @@
-package org.redrune.utility
+package com.tyluur.utility
 
 import org.apache.commons.codec.binary.Hex
 import java.io.BufferedReader

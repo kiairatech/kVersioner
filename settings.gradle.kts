@@ -1,1 +1,1 @@
-rootProject.name = "redrune667-launcher"
+rootProject.name = "versionable-jar-launcher"

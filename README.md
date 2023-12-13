@@ -2,7 +2,7 @@
 
 [![license][license-badge]][isc] [![discord-badge]][discord]
 
-This software is responsible for keeping the user client software up to date with the origin (server) software, and ensuring the user has the correct prerequistes to launch the client.
+This software is responsible for keeping the user client software up to date with the origin (server) software, and ensuring the user has the correct prerequistes to launch the software.
 
 Additionally, the software is opened once the version check has been satisfied.
 

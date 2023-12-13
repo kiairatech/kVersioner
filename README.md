@@ -1,4 +1,4 @@
-# versionable-jar-launcher
+# kVersioner
 
 This software is responsible for keeping the user client (jar) up to date, and ensuring the user has the correct prerequistes to launch the client.
 

@@ -1,4 +1,4 @@
-package com.tyluur.loader
+package ca.bridge_io.loader
 
 /*
  * @author Tyluur<itstyluur@icloud.com>

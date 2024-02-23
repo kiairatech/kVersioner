@@ -1,8 +1,8 @@
-package com.tyluur.loader
+package ca.bridge_io.loader
 
-import com.tyluur.utility.Constants
-import com.tyluur.utility.DirectoryManager
-import com.tyluur.utility.WebpageUtils
+import ca.bridge_io.utility.Constants
+import ca.bridge_io.utility.DirectoryManager
+import ca.bridge_io.utility.WebpageUtils
 import java.io.File
 import java.io.FileInputStream
 import java.io.IOException

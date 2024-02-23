@@ -1,6 +1,6 @@
-package com.tyluur.loader
+package ca.bridge_io.loader
 
-import com.tyluur.utility.Constants
+import ca.bridge_io.utility.Constants
 import java.awt.Desktop
 import java.io.File
 import java.io.IOException

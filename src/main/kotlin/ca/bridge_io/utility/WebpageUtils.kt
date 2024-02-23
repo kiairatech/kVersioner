@@ -1,4 +1,4 @@
-package com.tyluur.utility
+package ca.bridge_io.utility
 
 import org.apache.commons.codec.binary.Hex
 import java.io.BufferedReader

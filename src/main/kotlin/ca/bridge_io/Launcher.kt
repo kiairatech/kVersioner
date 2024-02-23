@@ -1,10 +1,10 @@
-package com.tyluur
+package ca.bridge_io
 
-import com.tyluur.loader.ClientDispatcher.open
-import com.tyluur.loader.ClientDownloader.Companion.initializeDownload
-import com.tyluur.loader.States
-import com.tyluur.utility.Constants
-import com.tyluur.utility.DirectoryManager.mkdirs
+import ca.bridge_io.loader.ClientDispatcher.open
+import ca.bridge_io.loader.ClientDownloader.Companion.initializeDownload
+import ca.bridge_io.loader.States
+import ca.bridge_io.utility.Constants
+import ca.bridge_io.utility.DirectoryManager.mkdirs
 import java.awt.EventQueue
 import java.awt.Font
 import javax.swing.*

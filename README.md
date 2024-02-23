@@ -10,5 +10,5 @@ Additionally, the software is opened once the version check has been satisfied.
 [license]: https://github.com/bridge-io/bridge-compressor/blob/main/LICENSE
 [license-badge]: https://img.shields.io/badge/license-GNU-informational
 
-[discord]: https://discord.gg/jDbBAKjhxh
+[discord]: https://discord.gg/DbyKfWxqR9
 [discord-badge]: https://img.shields.io/discord/1066359868908384286?color=%237289da&logo=discord
